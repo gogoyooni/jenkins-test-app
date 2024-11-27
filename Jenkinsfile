@@ -9,8 +9,7 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                // GitHub에서 소스 코드 가져오기
-                git branch: 'main', url: 'https://github.com/gogoyooni/jenkins-test-app.git'
+                checkout scm
             }
         }
 
