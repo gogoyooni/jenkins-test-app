@@ -12,7 +12,13 @@ pipeline {
                 checkout scm
             }
         }
-
+        stage('Set up Docker in Minikube') {
+            steps {
+                script {
+                    sh 'eval $(minikube -p minikube docker-env)'
+                }
+            }
+        }
         stage('Build Docker Image') {
             steps {
                 script {
