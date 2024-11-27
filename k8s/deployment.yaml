@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: python-app
+  namespace: ci-test
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: python-app
+  template:
+    metadata:
+      labels:
+        app: python-app
+    spec:
+      containers:
+        - name: python-app
+          image: $DOCKER_IMAGE # 이 부분은 Jenkins 파이프라인에서 Docker 이미지 이름으로 동적으로 설정됩니다.
+          ports:
+            - containerPort: 8080
+          resources:
+            limits:
+              cpu: "50m"
+              memory: "50Mi"
+            requests:
+              cpu: "50m"
+              memory: "50Mi"
